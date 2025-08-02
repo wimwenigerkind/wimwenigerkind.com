@@ -11,7 +11,7 @@ services:
       - GITHUB_TOKEN=${GITHUB_ACCESS_TOKEN}
     restart: unless-stopped
     volumes:
-      - github_cache:/app/.github-cache.json
+      - github_cache:/app/cache
 
 volumes:
   github_cache:

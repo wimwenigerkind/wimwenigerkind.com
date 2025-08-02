@@ -20,7 +20,7 @@ interface CacheData {
 }
 
 const CACHE_DURATION = 1000 * 60 * 30; // 30 Minuten
-const CACHE_FILE = '.github-cache.json';
+const CACHE_FILE = 'cache/.github-cache.json';
 
 // File-basierte Cache-Funktionen
 function readCache(): CacheData | null {
@@ -39,6 +39,11 @@ function readCache(): CacheData | null {
 function writeCache(data: CacheData) {
   try {
     const cacheFilePath = path.join(process.cwd(), CACHE_FILE);
+    // Ensure cache directory exists
+    const cacheDir = path.dirname(cacheFilePath);
+    if (!fs.existsSync(cacheDir)) {
+      fs.mkdirSync(cacheDir, { recursive: true });
+    }
     fs.writeFileSync(cacheFilePath, JSON.stringify(data, null, 2));
   } catch (error) {
     console.warn('Error writing cache file:', error);
