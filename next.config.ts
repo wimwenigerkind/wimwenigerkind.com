@@ -6,7 +6,14 @@ const nextConfig: NextConfig = {
   
   // External Images erlauben
   images: {
-    domains: ['images.wimwenigerkind.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.wimwenigerkind.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
   
   // Optional: Disable x-powered-by header
