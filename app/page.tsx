@@ -22,8 +22,25 @@ import {
     SiPython,
     SiGit,
     SiProxmox,
-    SiLinux
+    SiLinux,
+    SiFastapi,
+    SiMysql,
+    SiNginx,
+    SiGrafana,
+    SiPostgresql,
+    SiVim,
+    SiGnubash,
+    SiHomeassistant,
+    SiNextdotjs,
+    SiReact,
+    SiTypescript,
+    SiTailwindcss,
+    SiRaspberrypi,
+    SiHetzner,
+    SiGithubactions,
+    SiWireguard, SiBootstrap
 } from 'react-icons/si';
+import { Server, Container } from 'lucide-react';
 
 const MinimalPortfolio = () => {
     const [currentTime, setCurrentTime] = useState(new Date());
@@ -107,18 +124,45 @@ const MinimalPortfolio = () => {
     ];
 
     const skills = [
+        // Programming Languages
         {name: "PHP", icon: SiPhp},
+        {name: "Go", icon: SiGo},
+        {name: "Python", icon: SiPython},
+        {name: "JavaScript", icon: SiJavascript},
+        {name: "TypeScript", icon: SiTypescript},
+        {name: "Java", icon: SiOpenjdk},
+        {name: "Bash", icon: SiGnubash},
+        {name: "Vim", icon: SiVim},
+        
+        // Frameworks & Libraries
         {name: "Symfony", icon: SiSymfony},
         {name: "Shopware", icon: SiShopware},
-        {name: "Go", icon: SiGo},
-        {name: "Java", icon: SiOpenjdk},
+        {name: "Next.js", icon: SiNextdotjs},
+        {name: "React", icon: SiReact},
+        {name: "Bootstrap", icon: SiBootstrap},
+        {name: "Tailwind CSS", icon: SiTailwindcss},
+
+        // Infrastructure & DevOps
         {name: "Docker", icon: SiDocker},
         {name: "Kubernetes", icon: SiKubernetes},
-        {name: "JavaScript", icon: SiJavascript},
-        {name: "Python", icon: SiPython},
-        {name: "Git", icon: SiGit},
+        {name: "Linux", icon: SiLinux},
         {name: "Proxmox", icon: SiProxmox},
-        {name: "Linux", icon: SiLinux}
+        {name: "Nginx", icon: SiNginx},
+        {name: "Traefik", icon: Server},
+        
+        // Databases & Storage
+        {name: "MySQL", icon: SiMysql},
+        {name: "PostgreSQL", icon: SiPostgresql},
+        
+        // Tools & Platforms
+        {name: "Git", icon: SiGit},
+        {name: "GitHub Actions", icon: SiGithubactions},
+        {name: "Grafana", icon: SiGrafana},
+        {name: "Portainer", icon: Container},
+        {name: "Raspberry Pi", icon: SiRaspberrypi},
+        {name: "Hetzner", icon: SiHetzner},
+        {name: "WireGuard", icon: SiWireguard},
+        {name: "Home Assistant", icon: SiHomeassistant}
     ];
 
     const contactLinks = [
