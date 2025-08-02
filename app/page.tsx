@@ -1,103 +1,375 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+import React, {useState, useEffect} from 'react';
+import {
+    Github,
+    Mail,
+    ExternalLink,
+    ArrowUpRight,
+    Star,
+    GitFork
+} from 'lucide-react';
+import {
+    SiPhp,
+    SiSymfony,
+    SiShopware,
+    SiGo,
+    SiOpenjdk,
+    SiDocker,
+    SiKubernetes,
+    SiJavascript,
+    SiPython,
+    SiGit,
+    SiProxmox,
+    SiLinux
+} from 'react-icons/si';
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+const MinimalPortfolio = () => {
+    const [currentTime, setCurrentTime] = useState(new Date());
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+        return () => clearInterval(timer);
+    }, []);
+
+    useEffect(() => {
+        setTimeout(() => setIsLoaded(true), 100);
+    }, []);
+
+    interface GitHubRepo {
+        name: string;
+        description: string;
+        language: string;
+        languageColor: string;
+        stars: number;
+        forks: number;
+        watchers: number;
+        url: string;
+        topics: string[];
+    }
+
+    const [pinnedRepos, setPinnedRepos] = useState<GitHubRepo[]>([]);
+
+    // GitHub Repository Daten über API Route laden
+    useEffect(() => {
+        const fetchRepoData = async () => {
+            try {
+                const response = await fetch('/api/github-repos');
+                if (!response.ok) throw new Error('Failed to fetch repo data');
+
+                const repos = await response.json();
+                setPinnedRepos(repos);
+            } catch (error) {
+                console.error('Error fetching GitHub data:', error);
+                setPinnedRepos([]);
+            }
+        };
+
+        fetchRepoData();
+    }, []);
+
+    const formatNumber = (num: number) => {
+        if (num >= 1000) {
+            return (num / 1000).toFixed(1) + 'k';
+        }
+        return num.toString();
+    };
+
+    const experience = [
+        {
+            role: "Application Developer Trainee",
+            company: "HEPTACOM GmbH",
+            period: "2024 — Present",
+            location: "Application Development"
+        },
+        {
+            role: "Open Source Contributor",
+            company: "Dockware & Packeton Projects",
+            period: "2024 — Present",
+            location: "Remote"
+        },
+        {
+            role: "Independent Developer",
+            company: "Personal Projects & CLI Tools",
+            period: "2022 — Present",
+            location: "Germany"
+        },
+        {
+            role: "Learning Journey",
+            company: "Self-taught Developer",
+            period: "2018 — Present",
+            location: "Started at age 9"
+        }
+    ];
+
+    const skills = [
+        {name: "PHP", icon: SiPhp},
+        {name: "Symfony", icon: SiSymfony},
+        {name: "Shopware", icon: SiShopware},
+        {name: "Go", icon: SiGo},
+        {name: "Java", icon: SiOpenjdk},
+        {name: "Docker", icon: SiDocker},
+        {name: "Kubernetes", icon: SiKubernetes},
+        {name: "JavaScript", icon: SiJavascript},
+        {name: "Python", icon: SiPython},
+        {name: "Git", icon: SiGit},
+        {name: "Proxmox", icon: SiProxmox},
+        {name: "Linux", icon: SiLinux}
+    ];
+
+    const contactLinks = [
+        {
+            title: "Email",
+            subtitle: "info@wimwenigerkind.com",
+            href: "mailto:contact@wimwenigerkind.com",
+            icon: Mail
+        },
+        {
+            title: "GitHub",
+            subtitle: "View my repositories",
+            href: "https://github.com/wimwenigerkind",
+            icon: Github
+        },
+        {
+            title: "Docs",
+            subtitle: "Documentation & Guides",
+            href: "https://docs.wimwenigerkind.com",
+            icon: ExternalLink
+        }
+    ];
+
+    if (!isLoaded) {
+        return (
+            <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+                <div className="text-center">
+                    <div
+                        className="w-8 h-8 border-2 border-blue-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <div className="text-slate-400 text-sm font-mono">Loading portfolio...</div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="min-h-screen bg-slate-900 text-slate-100">
+            {/* Header */}
+            <header className="px-6 py-8 border-b border-slate-800">
+                <div className="max-w-5xl mx-auto flex items-center justify-between">
+                    <div className="flex items-center space-x-4">
+                        <img 
+                            src="https://images.wimwenigerkind.com/wimwenigerkind-transparent-icon.png" 
+                            alt="Wim Wenigerkind" 
+                            className="w-16 h-16 rounded-full"
+                        />
+                        <div>
+                            <h1 className="text-2xl font-medium text-slate-100 mb-1">Wim Wenigerkind</h1>
+                            <p className="text-slate-400 text-sm">Full-Stack Developer</p>
+                        </div>
+                    </div>
+                    <div className="text-right">
+                        <div className="text-slate-400 text-sm font-mono">
+                            {currentTime.toLocaleTimeString('de-DE', {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit'
+                            })}
+                        </div>
+                        <div className="text-slate-500 text-xs">Bremen, DE</div>
+                    </div>
+                </div>
+            </header>
+
+            <main className="max-w-5xl mx-auto px-6 py-12 space-y-20">
+                {/* About */}
+                <section className="bg-slate-800/30 rounded-2xl p-8 border border-slate-800">
+                    <h2 className="text-sm font-medium text-slate-400 uppercase tracking-wider mb-6">
+                        About
+                    </h2>
+                    <p className="text-lg text-slate-300 leading-relaxed max-w-3xl">
+                        Hi, I'm Wim – a 16-year-old passionate developer from Germany with 7 years of coding experience.
+                        I started my journey at age 9 and have been exploring new technologies ever since. Currently
+                        learning
+                        PHP, Symfony, Shopware, and Java while contributing to open-source projects like Dockware.
+                        I love building Docker solutions, CLI tools, and automation scripts that make developers' lives
+                        easier.
+                    </p>
+                </section>
+
+                {/* Skills */}
+                <section className="bg-slate-800/30 rounded-2xl p-8 border border-slate-800">
+                    <h2 className="text-sm font-medium text-slate-400 uppercase tracking-wider mb-6">
+                        Technologies
+                    </h2>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                        {skills.map((skill) => {
+                            const IconComponent = skill.icon;
+                            return (
+                                <div
+                                    key={skill.name}
+                                    className="flex flex-col items-center p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors group"
+                                >
+                                    <IconComponent
+                                        size={24}
+                                        className="text-slate-400 group-hover:text-blue-400 transition-colors mb-2"
+                                    />
+                                    <span className="text-sm text-slate-300 text-center">{skill.name}</span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </section>
+
+                {/* GitHub Repositories */}
+                <section className="bg-slate-800/30 rounded-2xl p-8 border border-slate-800">
+                    <div className="flex items-center justify-between mb-8">
+                        <h2 className="text-sm font-medium text-slate-400 uppercase tracking-wider">
+                            Pinned Repositories
+                        </h2>
+                        <a
+                            href="https://github.com/wimwenigerkind"
+                            className="flex items-center space-x-2 text-slate-400 hover:text-blue-400 transition-colors text-sm"
+                        >
+                            <Github size={16}/>
+                            <span>View all repos</span>
+                            <ArrowUpRight size={14}/>
+                        </a>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {pinnedRepos.map((repo, index) => (
+                            <a
+                                key={index}
+                                href={repo.url}
+                                className="block p-6 bg-slate-800/50 rounded-lg border border-slate-700/50 hover:border-slate-600 hover:bg-slate-700/50 transition-all duration-300 group"
+                            >
+                                <div className="flex items-start justify-between mb-3">
+                                    <h3 className="text-slate-100 font-medium group-hover:text-blue-400 transition-colors truncate pr-2">
+                                        {repo.name}
+                                    </h3>
+                                    <ArrowUpRight
+                                        size={16}
+                                        className="text-slate-500 group-hover:text-blue-400 transition-colors flex-shrink-0"
+                                    />
+                                </div>
+
+                                <p className="text-slate-400 text-sm mb-4 leading-relaxed line-clamp-2">
+                                    {repo.description}
+                                </p>
+
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center space-x-4 text-xs text-slate-500">
+                                        <div className="flex items-center space-x-1">
+                                            <div
+                                                className="w-3 h-3 rounded-full"
+                                                style={{backgroundColor: repo.languageColor}}
+                                            />
+                                            <span>{repo.language}</span>
+                                        </div>
+                                        <div className="flex items-center space-x-1">
+                                            <Star size={12}/>
+                                            <span>{formatNumber(repo.stars)}</span>
+                                        </div>
+                                        <div className="flex items-center space-x-1">
+                                            <GitFork size={12}/>
+                                            <span>{formatNumber(repo.forks)}</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-wrap gap-1">
+                                    {repo.topics.slice(0, 3).map((topic) => (
+                                        <span
+                                            key={topic}
+                                            className="text-xs px-2 py-1 bg-slate-700/50 text-slate-400 rounded-full"
+                                        >
+                      {topic}
+                    </span>
+                                    ))}
+                                    {repo.topics.length > 3 && (
+                                        <span className="text-xs px-2 py-1 bg-slate-700/50 text-slate-500 rounded-full">
+                      +{repo.topics.length - 3}
+                    </span>
+                                    )}
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Experience */}
+                <section className="bg-slate-800/30 rounded-2xl p-8 border border-slate-800">
+                    <h2 className="text-sm font-medium text-slate-400 uppercase tracking-wider mb-8">
+                        Experience
+                    </h2>
+                    <div className="space-y-6">
+                        {experience.map((exp, index) => (
+                            <div key={index}
+                                 className="flex flex-col md:flex-row md:items-center md:justify-between p-4 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors">
+                                <div>
+                                    <h3 className="text-lg font-medium text-slate-100 mb-1">
+                                        {exp.role}
+                                    </h3>
+                                    <p className="text-slate-400">{exp.company}</p>
+                                </div>
+                                <div className="text-right mt-2 md:mt-0">
+                                    <div className="text-sm text-slate-500 font-mono">{exp.period}</div>
+                                    <div className="text-xs text-slate-600">{exp.location}</div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Contact */}
+                <section className="bg-slate-800/30 rounded-2xl p-8 border border-slate-800">
+                    <h2 className="text-sm font-medium text-slate-400 uppercase tracking-wider mb-8">
+                        Get in Touch
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {contactLinks.map((link, index) => {
+                            const IconComponent = link.icon;
+                            return (
+                                <a
+                                    key={index}
+                                    href={link.href}
+                                    className="flex items-center justify-between p-6 bg-slate-800/50 rounded-lg hover:bg-slate-700/50 transition-colors group border border-slate-700/50"
+                                >
+                                    <div className="flex items-center space-x-4">
+                                        <IconComponent size={20}
+                                                       className="text-slate-400 group-hover:text-blue-400 transition-colors"/>
+                                        <div>
+                                            <div className="text-slate-300 font-medium">{link.title}</div>
+                                            <div className="text-slate-500 text-sm">{link.subtitle}</div>
+                                        </div>
+                                    </div>
+                                    <ArrowUpRight
+                                        size={16}
+                                        className="text-slate-500 group-hover:text-blue-400 transition-colors"
+                                    />
+                                </a>
+                            );
+                        })}
+                    </div>
+                </section>
+            </main>
+
+            {/* Footer */}
+            <footer className="border-t border-slate-800 px-6 py-8 mt-16">
+                <div className="max-w-5xl mx-auto">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                        <p className="text-slate-500 text-sm">
+                            © 2025 Wim Wenigerkind. All rights reserved.
+                        </p>
+                        <p className="text-slate-600 text-xs mt-2 md:mt-0 font-mono">
+                            Built with React & Tailwind CSS
+                        </p>
+                    </div>
+                </div>
+            </footer>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
-}
+    );
+};
+
+export default MinimalPortfolio;
