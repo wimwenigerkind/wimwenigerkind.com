@@ -23,7 +23,6 @@ import {
     SiGit,
     SiProxmox,
     SiLinux,
-    SiFastapi,
     SiMysql,
     SiNginx,
     SiGrafana,
