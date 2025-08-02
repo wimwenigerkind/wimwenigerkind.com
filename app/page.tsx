@@ -88,9 +88,9 @@ const MinimalPortfolio = () => {
         },
         {
             role: "Open Source Contributor",
-            company: "Dockware & Packeton Projects",
+            company: "Dockware & other OSS Projects",
             period: "2024 — Present",
-            location: "Remote"
+            location: "All over the world"
         },
         {
             role: "Independent Developer",
