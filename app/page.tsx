@@ -1,6 +1,7 @@
 "use client";
 
 import React, {useState, useEffect} from 'react';
+import Image from 'next/image';
 import {
     Github,
     Mail,
@@ -159,9 +160,11 @@ const MinimalPortfolio = () => {
             <header className="px-6 py-8 border-b border-slate-800">
                 <div className="max-w-5xl mx-auto flex items-center justify-between">
                     <div className="flex items-center space-x-4">
-                        <img 
+                        <Image 
                             src="https://images.wimwenigerkind.com/wimwenigerkind-transparent-icon.png" 
                             alt="Wim Wenigerkind" 
+                            width={64}
+                            height={64}
                             className="w-16 h-16 rounded-full"
                         />
                         <div>
@@ -189,11 +192,11 @@ const MinimalPortfolio = () => {
                         About
                     </h2>
                     <p className="text-lg text-slate-300 leading-relaxed max-w-3xl">
-                        Hi, I'm Wim – a 16-year-old passionate developer from Germany with 7 years of coding experience.
+                        Hi, I&apos;m Wim – a 16-year-old passionate developer from Germany with 7 years of coding experience.
                         I started my journey at age 9 and have been exploring new technologies ever since. Currently
                         learning
                         PHP, Symfony, Shopware, and Java while contributing to open-source projects like Dockware.
-                        I love building Docker solutions, CLI tools, and automation scripts that make developers' lives
+                        I love building Docker solutions, CLI tools, and automation scripts that make developers&apos; lives
                         easier.
                     </p>
                 </section>

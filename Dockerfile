@@ -1,0 +1,56 @@
+# Multi-stage build für optimale Image-Größe
+FROM node:20-alpine AS base
+
+# 1. Dependencies installieren
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+# Package files kopieren
+COPY package.json pnpm-lock.yaml* ./
+RUN corepack enable pnpm && pnpm i --frozen-lockfile
+
+# 2. Next.js App builden
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
+# Umgebungsvariablen für Build
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# GitHub Token temporär für Build (wird nicht ins finale Image übernommen)
+ARG GITHUB_TOKEN
+ENV GITHUB_TOKEN=${GITHUB_TOKEN}
+
+RUN corepack enable pnpm && pnpm run build
+
+# 3. Production Image
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Public folder kopieren
+COPY --from=builder /app/public ./public
+
+# Automatic Image Optimization files
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+# Output files kopieren
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+
+EXPOSE 3000
+
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+
+CMD ["node", "server.js"]
