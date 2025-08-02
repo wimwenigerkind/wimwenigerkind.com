@@ -1,0 +1,14 @@
+image: atlassian/default-image:3
+
+pipelines:
+  default:
+    - step:
+        name: Mirror to Github
+        runs-on:
+          - 'self.hosted'
+          - 'linux'
+          - 'workspace'
+        script:
+          - git fetch origin
+          - git remote add github https://x-token-auth:${GITHUB_ACCESS_TOKEN}@github.com/wimwenigerkind/${BITBUCKET_REPO_SLUG}.git
+          - git push --force github ${BITBUCKET_BRANCH}
