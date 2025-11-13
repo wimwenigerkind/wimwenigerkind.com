@@ -2,3 +2,8 @@ baseURL: https://wimwenigerkind.com
 languageCode: en-us
 title: Wim Wenigerkind
 theme: ["PaperMod"]
+
+enableRobotsTXT: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
