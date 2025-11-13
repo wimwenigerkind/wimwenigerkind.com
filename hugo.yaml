@@ -11,3 +11,15 @@ buildExpired: false
 minify:
   disableXML: true
   minifyOutput: true
+
+params:
+  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  title: Wim Wenigerkind
+  description: "Wim Wenigerkind"
+  keywords: [Blog, Portfolio, PaperMod]
+  author: Me
+  # author: ["Me", "You"] # multiple authors
+  images: [ "https://avatars.githubusercontent.com/u/159561025?v=4&s=400" ]
+  DateFormat: "January 2, 2006"
+  defaultTheme: auto # dark, light
+  disableThemeToggle: false
