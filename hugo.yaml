@@ -66,3 +66,13 @@ params:
   homeInfoParams:
     Title: "Hi there \U0001F44B"
     Content: "Hey, I'm **Wim Wenigerkind** a 16-year-old developer from Germany. I started my journey at age 9 and have been exploring new technologies ever since. Currently learning PHP, Symfony, Shopware, GO, C# and Java while contributing to open-source projects. I love building Docker solutions, CLI tools, and automation scripts that make developers' lives easier."
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/wimwenigerkind"
+    - name: discord
+      url: "https://discord.com/users/930480546713325648"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/wim-wenigerkind-5a9037368/"
+    - name: email
+      url: "mailto:info@wimwenigerkind.com"
