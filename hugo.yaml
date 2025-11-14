@@ -48,3 +48,8 @@ params:
     favicon32x32: "https://avatars3.githubusercontent.com/u/159561025?s=460&u=18be3a2d46f07dd42fc2b6dee9b4b9b68bca28d2&v=4"
     apple_touch_icon: "https://avatars3.githubusercontent.com/u/159561025?s=460&u=18be3a2d46f07dd42fc2b6dee9b4b9b68bca28d2&v=4"
     safari_pinned_tab: "https://avatars3.githubusercontent.com/u/159561025?s=460&u=18be3a2d46f07dd42fc2b6dee9b4b9b68bca28d2&v=4"
+
+  label:
+    text: "Home"
+    icon: "https://avatars3.githubusercontent.com/u/159561025?s=460&u=18be3a2d46f07dd42fc2b6dee9b4b9b68bca28d2&v=4"
+    iconHeight: 35
