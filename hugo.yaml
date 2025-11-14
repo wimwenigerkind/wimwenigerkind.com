@@ -76,3 +76,14 @@ params:
       url: "https://www.linkedin.com/in/wim-wenigerkind-5a9037368/"
     - name: email
       url: "mailto:info@wimwenigerkind.com"
+
+menu:
+  main:
+    - identifier: home
+      name: Home
+      url: /
+      weight: 10
+    - identifier: experience
+      name: Experience
+      url: /experience/
+      weight: 20
