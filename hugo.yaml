@@ -77,6 +77,12 @@ params:
     - name: email
       url: "mailto:info@wimwenigerkind.com"
 
+  analytics:
+    umami:
+      enable: true
+      scriptUrl: "https://umami.wimwenigerkind.com/script.js"
+      websiteId: "97bc5731-91b5-4e03-b172-b57d43e06f1c"
+
 menu:
   main:
     - identifier: home
