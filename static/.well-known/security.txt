@@ -1,0 +1,4 @@
+Contact: mailto:security@wimdev.group
+Expires: 2025-11-15
+Preferred-Languages: de, en
+Canonical: https://wimwenigerkind.com/.well-known/security.txt
