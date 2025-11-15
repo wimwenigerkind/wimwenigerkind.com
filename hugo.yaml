@@ -74,6 +74,8 @@ params:
       url: "https://discord.com/users/930480546713325648"
     - name: linkedin
       url: "https://www.linkedin.com/in/wim-wenigerkind-5a9037368/"
+    - name: docs
+      url: "https://docs.wimwenigerkind.com"
     - name: email
       url: "mailto:info@wimwenigerkind.com"
 
