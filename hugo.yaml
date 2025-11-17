@@ -87,11 +87,7 @@ params:
 
 menu:
   main:
-    - identifier: home
-      name: Home
-      url: /
-      weight: 10
     - identifier: experience
       name: Experience
       url: /experience/
-      weight: 20
+      weight: 10
