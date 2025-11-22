@@ -8,6 +8,6 @@ export function visitHome() {
 }
 
 export function visitExperience() {
-    const res = http.get(`${BASE_URL}/experience`);
+    const res = http.get(`${BASE_URL}/experience/`);
     expect.soft(res.status).toBe(200);
 }
