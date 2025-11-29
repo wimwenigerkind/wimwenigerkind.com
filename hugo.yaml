@@ -57,7 +57,7 @@ params:
   profileMode:
     enabled: false # needs to be explicitly set
     title: "Hi there \U0001F44B"
-    subtitle: "Hey, I'm **Wim Wenigerkind** a 16-year-old developer from Germany. I started my journey at age 9 and have been exploring new technologies ever since. Currently learning PHP, Symfony, Shopware, GO, C# and Java while contributing to open-source projects. I love building Docker solutions, CLI tools, and automation scripts that make developers' lives easier."
+    subtitle: "Hey, I'm **Wim Wenigerkind** a 16-year-old developer from Germany. I started my journey at age 9 and have been exploring new technologies ever since. Currently learning PHP, Symfony, Shopware, GO, C#, Odoo and Java while contributing to open-source projects. I love building Docker solutions, CLI tools, and automation scripts that make developers' lives easier."
     imageUrl: "https://avatars3.githubusercontent.com/u/159561025?s=460&u=18be3a2d46f07dd42fc2b6dee9b4b9b68bca28d2&v=4"
     imageWidth: 120
     imageHeight: 120
@@ -65,7 +65,7 @@ params:
 
   homeInfoParams:
     Title: "Hi there \U0001F44B"
-    Content: "Hey, I'm **Wim Wenigerkind** a 16-year-old developer from Germany. I started my journey at age 9 and have been exploring new technologies ever since. Currently learning PHP, Symfony, Shopware, GO, C# and Java while contributing to open-source projects. I love building Docker solutions, CLI tools, and automation scripts that make developers' lives easier."
+    Content: "Hey, I'm **Wim Wenigerkind** a 16-year-old developer from Germany. I started my journey at age 9 and have been exploring new technologies ever since. Currently learning PHP, Symfony, Shopware, GO, C#, Odoo and Java while contributing to open-source projects. I love building Docker solutions, CLI tools, and automation scripts that make developers' lives easier."
 
   socialIcons:
     - name: github
