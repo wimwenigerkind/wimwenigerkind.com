@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wimwenigerkind-com
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wimwenigerkind-com
+  template:
+    metadata:
+      labels:
+        app: wimwenigerkind-com
+    spec:
+      containers:
+        - name: wimwenigerkind-com
+          image: ghcr.io/wimwenigerkind/wimwenigerkind.com-hugo:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
