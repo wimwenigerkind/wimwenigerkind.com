@@ -1,0 +1,13 @@
+.git
+.github
+.idea
+.DS_Store
+**/.DS_Store
+.hugo_build.lock
+public
+resources
+k6
+.dockerignore
+Dockerfile
+deployment.yaml
+nginx.yaml
